@@ -69,13 +69,16 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ReferencePath>D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\lib;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -84,7 +87,16 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>D:\mysql-connector-c++-8.0.13-winx64\include\jdbc;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\include;D:\mysql-connector-c++-8.0.13-winx64\include\jdbc\cppconn;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\include\mysql;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\include\openssl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>CPPCONN_PUBLIC_FUNC=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\mysql-connector-c++-8.0.13-winx64\lib64\vs14;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\lib;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\lib\mecab;D:\Visual Studio Documents\Visual Studio 2017\Projects\MyDBAccessor_Project\MySQL Server 8.0\lib\plugin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <ProjectReference>
+      <UseLibraryDependencyInputs>false</UseLibraryDependencyInputs>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -116,6 +128,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="mysqlhelper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mysqlhelper.cpp" />
+    <ClCompile Include="源.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
